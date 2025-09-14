@@ -13,6 +13,8 @@
 
 #include <string>
 
+#include "export.h"
+
 /**
  * @namespace wwtools
  * @brief parent namespace for specific file type helper functions
@@ -27,11 +29,13 @@ namespace wwtools {
  */
 std::string wem_to_ogg(const std::string &indata);
 
+#if WWTOOLS_LIBRARY
 extern "C" {
-__declspec(dllexport) uint64_t __cdecl get_wem_to_ogg_size(const uint8_t *indata, uint64_t insize);
+WWTOOLS_EXPORT uint64_t WWTOOLS_CALL get_wem_to_ogg_size(const uint8_t *indata, uint64_t insize);
 
-__declspec(dllexport) void __cdecl wem_to_ogg(const uint8_t *indata, uint64_t insize, uint8_t *outdata);
+WWTOOLS_EXPORT void WWTOOLS_CALL wem_to_ogg(const uint8_t *indata, uint64_t insize, uint8_t *outdata);
 }
+#endif
 } // namespace wwtools
 
 #endif // WWTOOLS_WWTOOLS_HPP
